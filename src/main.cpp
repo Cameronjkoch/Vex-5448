@@ -1,4 +1,6 @@
 #include "main.h"
+#include "base.h"
+#include "auton.h"
 
 /**
  * A callback function for LLEMU's center button.
@@ -58,7 +60,15 @@ void competition_initialize() {}
  * will be stopped. Re-enabling the robot will restart the task, not re-start it
  * from where it left off.
  */
-void autonomous() {}
+void autonomous() {
+	moveBase(1200, 70);
+	turnBase(-200, 70);
+	moveBase(300, 70);
+	//turnBase(1200, 70);
+	//moveBase(550, 50);
+	//turnBase(110, 70);
+	//moveBase(300, 70);
+}
 
 /**
  * Runs the operator control code. This function will be started in its own task
@@ -74,6 +84,11 @@ void autonomous() {}
  * task, not resume it from where it left off.
  */
 void opcontrol() {
+	leftBase1.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+	leftBase2.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+	rightBase1.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+	rightBase2.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+	
 	pros::Controller master(pros::E_CONTROLLER_MASTER);
 	pros::Motor left_mtr(1);
 	pros::Motor right_mtr(2);
@@ -81,32 +96,33 @@ void opcontrol() {
 	while (true) {
 		runLeftBase(master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y));
 		runRightBase(master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y));
+
 		pros::delay(20);
-	}
-{
-if(master.get_digital(E_CONTROLLER_DIGITAL_R1))
 
-			runlift(115);
+		if (master.get_digital(E_CONTROLLER_DIGITAL_R1))
 
-		else if(master.get_digital(E_CONTROLLER_DIGITAL_R2))
+			lift.move(130);
 
-			runlift(-115);
+		else if (master.get_digital(E_CONTROLLER_DIGITAL_R2))
 
-		else
+			lift.move(-130);
 
-			runlift(0);
+		else lift.move(0);
 
-        }
+		if (master.get_digital(E_CONTROLLER_DIGITAL_L1))
 		{
-			if(master.get_digital(E_CONTROLLER_DIGITAL_L1))
-
-			runintake(115);
-
-		else if(master.get_digital(E_CONTROLLER_DIGITAL_L2))
-
-			runintake(-115);
-
-		else
-
-			runintake(0);
+			intake1.move(115);
+			intake2.move(-115);
 		}
+		else if (master.get_digital(E_CONTROLLER_DIGITAL_L2))
+		{
+			intake1.move(-115);
+			intake2.move(115);
+		}
+		else
+		{
+			intake1.move(0);
+			intake2.move(0);
+		}
+	}
+}
