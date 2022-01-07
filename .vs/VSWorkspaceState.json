@@ -3,8 +3,7 @@
     "",
     "\\firmware",
     "\\include",
-    "\\src",
-    "\\src\\auton"
+    "\\src"
   ],
   "SelectedNode": "\\src\\base.cpp",
   "PreviewInSolutionExplorer": false
