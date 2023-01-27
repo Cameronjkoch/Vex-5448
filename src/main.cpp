@@ -1,6 +1,7 @@
 #include "main.h"
 #include "base.h"
-#include "auton.h"
+#include "pragma.h"
+using namespace pros;
 
 /**
  * A callback function for LLEMU's center button.
@@ -60,14 +61,60 @@ void competition_initialize() {}
  * will be stopped. Re-enabling the robot will restart the task, not re-start it
  * from where it left off.
  */
-void autonomous() {
-	moveBase(1200, 70);
-	turnBase(-200, 70);
-	moveBase(300, 70);
-	//turnBase(1200, 70);
-	//moveBase(550, 50);
-	//turnBase(110, 70);
-	//moveBase(300, 70);
+void autonomous() 
+{
+	std::cout << "START VEX PROGRAM" << std::endl;
+
+	//BLUESIDE FAR ROLLER
+	moveBase(-280, 127);
+	turnBase(-250, 127);
+	moveBase(-300,127);
+	roller(-500);
+	pros::delay(1000);
+	//turnBase(-50,127);
+	flywheel(true, 95);
+	shoot(2);
+	flywheel(false, 0);
+	
+	//REDSIDE ROLLER
+	/*flywheel(true, 95);
+	shoot(2);
+	flywheel(false, 0);
+	turnBase(-25, 127);
+	pros::delay(100);
+	moveBase(-150,127);
+	roller(-100);
+	pros::delay(200);*/
+	
+	
+	//CANT USE UNTIL ROBOT MORE CONSISTENT
+	//moveBase(175,127);
+	//pros::delay(100);
+	/*turnBase(-130,127);
+	//pros::delay(100);
+	moveBase(200,127);
+	//pros::delay(200);
+	turnBase(450,127);
+	pros::delay(1000);
+	intake1.tare_position(); 
+    intake2.tare_position(); 
+	intake1.move_relative(2000, 127);
+    intake2.move_relative(2000, 127);
+	moveBase(-200, 40);*/	
+	//turnBase(500,100); //turn around
+
+
+	std::cout << "END VEX PROGRAM" << std::endl;
+
+	/*moveBase(200,130); //move forward
+	turnBase(150,130); //turn to line up and shoot
+	shoot(1);
+	turnBase(-200,130);
+	intake1.move_relative(70,-127);
+	intake2.move_relative(70,-127); 
+	moveBase(100,130);
+	turnBase(400,130);
+	shoot(1);*/
 }
 
 /**
@@ -84,45 +131,93 @@ void autonomous() {
  * task, not resume it from where it left off.
  */
 void opcontrol() {
-	leftBase1.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
-	leftBase2.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
-	rightBase1.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
-	rightBase2.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+	leftBase1.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
+	leftBase2.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
+	rightBase1.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
+	rightBase2.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
 	
 	pros::Controller master(pros::E_CONTROLLER_MASTER);
 	pros::Motor left_mtr(1);
 	pros::Motor right_mtr(2);
 
+	std::cout << "START VEX PROGRAM" << std::endl;
+
 	while (true) {
 		runLeftBase(master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y));
 		runRightBase(master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y));
+		
+		bool state = LOW;
+    
+	//state != state;
+
+    piston1.set_value(true);
+	piston2.set_value(true);
+	piston3.set_value(false);
+    pros::delay(10); // toggle the sensor value every 50ms
+  
 
 		pros::delay(20);
 
-		if (master.get_digital(E_CONTROLLER_DIGITAL_R1))
-
-			lift.move(130);
-
-		else if (master.get_digital(E_CONTROLLER_DIGITAL_R2))
-
-			lift.move(-130);
-
-		else lift.move(0);
-
-		if (master.get_digital(E_CONTROLLER_DIGITAL_L1))
+		if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L1))
 		{
-			intake1.move(115);
-			intake2.move(-115);
+			flywheel1.move(100);
+			flywheel2.move(-100);
 		}
-		else if (master.get_digital(E_CONTROLLER_DIGITAL_L2))
+		if (master.get_digital(pros::E_CONTROLLER_DIGITAL_UP))
 		{
-			intake1.move(-115);
-			intake2.move(115);
+			flywheel1.move(130);
+			flywheel2.move(-130);
+		}
+		if (master.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN))
+		{
+			flywheel1.move(70);
+			flywheel2.move(-70);
+		}
+		if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L2))
+		{
+			flywheel1.move(0);
+			flywheel2.move(0);
+		}
+		
+		if (master.get_digital(pros::E_CONTROLLER_DIGITAL_R1))
+		{
+			intake1.move(130);
+			intake2.move(130);
+		}
+		else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_R2))
+		{
+			intake1.move(-130);
+			intake2.move(-130);
 		}
 		else
 		{
 			intake1.move(0);
 			intake2.move(0);
 		}
-	}
+
+		if (master.get_digital(pros::E_CONTROLLER_DIGITAL_B))
+		{
+			piston1.set_value(false);
+			piston2.set_value(false);
+			pros::delay(150);
+			piston1.set_value(true);
+			piston2.set_value(true);
+		}
+
+		if (master.get_digital(pros::E_CONTROLLER_DIGITAL_X))
+		{
+			piston3.set_value(true);
+			pros::delay(1000);
+			piston3.set_value(false);
+		}
+
+		if (master.get_digital(pros::E_CONTROLLER_DIGITAL_LEFT))
+		{
+			piston3.set_value(true);
+			pros::delay(10000);
+			piston3.set_value(false);
+		}
 }
+}	
+
+

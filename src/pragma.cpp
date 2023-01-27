@@ -1,10 +1,15 @@
 #include "main.h"
 
 pros::Controller master(pros::E_CONTROLLER_MASTER);
-pros::Motor leftBase1(9, pros::E_MOTOR_GEARSET_18, 0, pros::E_MOTOR_ENCODER_DEGREES);
-pros::Motor leftBase2(7, pros::E_MOTOR_GEARSET_18, 0, pros::E_MOTOR_ENCODER_DEGREES);
-pros::Motor rightBase1(19, pros::E_MOTOR_GEARSET_18, 1, pros::E_MOTOR_ENCODER_DEGREES);
-pros::Motor rightBase2(10, pros::E_MOTOR_GEARSET_18, 1, pros::E_MOTOR_ENCODER_DEGREES);
-pros::Motor lift(13, pros::E_MOTOR_GEARSET_18, 0, pros::E_MOTOR_ENCODER_DEGREES);
+pros::Motor leftBase1(18, pros::E_MOTOR_GEARSET_18, 0, pros::E_MOTOR_ENCODER_DEGREES);
+pros::Motor leftBase2(2, pros::E_MOTOR_GEARSET_18, 0, pros::E_MOTOR_ENCODER_DEGREES);
+pros::Motor rightBase1(10, pros::E_MOTOR_GEARSET_18, 1, pros::E_MOTOR_ENCODER_DEGREES);
+pros::Motor rightBase2(4, pros::E_MOTOR_GEARSET_18, 1, pros::E_MOTOR_ENCODER_DEGREES);
+pros::Motor flywheel1(12, pros::E_MOTOR_GEARSET_18, 0, pros::E_MOTOR_ENCODER_DEGREES);
+pros::Motor flywheel2(17, pros::E_MOTOR_GEARSET_18, 0, pros::E_MOTOR_ENCODER_DEGREES);
 pros::Motor intake1(11, pros::E_MOTOR_GEARSET_18, 0, pros::E_MOTOR_ENCODER_DEGREES);
-pros::Motor intake2(5, pros::E_MOTOR_GEARSET_18, 0, pros::E_MOTOR_ENCODER_DEGREES);
+pros::Motor intake2(20, pros::E_MOTOR_GEARSET_18, 0, pros::E_MOTOR_ENCODER_DEGREES);
+//pros::Motor spinnysthing(11, pros::E_MOTOR_GEARSET_18, 0, pros::E_MOTOR_ENCODER_DEGREES);
+pros::ADIDigitalOut piston1 ('A');
+pros::ADIDigitalOut piston2 ('B');
+pros::ADIDigitalOut piston3 ('D');
