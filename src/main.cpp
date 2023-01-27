@@ -77,6 +77,7 @@ void autonomous()
 	flywheel(false, 0);*/
 	
 	//REDSIDE ROLLER
+	//change the roller to 100 for blue side
 	flywheel(true, 95);
 	shoot(2);
 	flywheel(false, 0);
