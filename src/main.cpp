@@ -66,7 +66,7 @@ void autonomous()
 	std::cout << "START VEX PROGRAM" << std::endl;
 
 	//BLUESIDE FAR ROLLER
-	moveBase(-280, 127);
+	/*moveBase(-280, 127);
 	turnBase(-250, 127);
 	moveBase(-300,127);
 	roller(-500);
@@ -74,17 +74,17 @@ void autonomous()
 	//turnBase(-50,127);
 	flywheel(true, 95);
 	shoot(2);
-	flywheel(false, 0);
+	flywheel(false, 0);*/
 	
 	//REDSIDE ROLLER
-	/*flywheel(true, 95);
+	flywheel(true, 95);
 	shoot(2);
 	flywheel(false, 0);
 	turnBase(-25, 127);
 	pros::delay(100);
 	moveBase(-150,127);
 	roller(-100);
-	pros::delay(200);*/
+	pros::delay(200);
 	
 	
 	//CANT USE UNTIL ROBOT MORE CONSISTENT
