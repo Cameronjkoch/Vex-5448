@@ -94,7 +94,7 @@ void flywheel(bool bOn, double speed)
             pros::delay(100);
             flywheel1.move(speed);
             flywheel2.move(-speed);
-            pros::delay(2250);
+            pros::delay(3250);
         }
         else {
             flywheel1.move(0);

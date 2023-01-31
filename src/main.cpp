@@ -65,45 +65,40 @@ void autonomous()
 {
 	std::cout << "START VEX PROGRAM" << std::endl;
 
-	//BLUESIDE FAR ROLLER
-	/*moveBase(-280, 127);
-	turnBase(-250, 127);
+	//BLUESIDE FAR ROLLER SHOOTING FOR 2 points
+	moveBase(-320, 127);
+	turnBase(-300, 127);
 	moveBase(-300,127);
 	roller(-500);
-	pros::delay(1000);
-	//turnBase(-50,127);
-	flywheel(true, 95);
+	pros::delay(500);
+	moveBase(60,127);
+	turnBase(280,127);
+	moveBase(100,127);
+	flywheel(true, 58);
+	shoot(2);
+	flywheel(false, 0);
+
+	//BLUESIDE FAR ROLLER SHOOTING FOR 10 points
+	/*moveBase(-320, 127);
+	turnBase(-300, 127);
+	moveBase(-300,127);
+	roller(-500);
+	pros::delay(500);
+	moveBase(30,127);
+	turnBase(-35,127);
+	flywheel(true, 90);
 	shoot(2);
 	flywheel(false, 0);*/
 	
 	//REDSIDE ROLLER
-	//change the roller to 100 for blue side
-	flywheel(true, 95);
+	/*flywheel(true, 95);
 	shoot(2);
 	flywheel(false, 0);
 	turnBase(-25, 127);
 	pros::delay(100);
 	moveBase(-150,127);
-	roller(-100);
-	pros::delay(200);
-	
-	
-	//CANT USE UNTIL ROBOT MORE CONSISTENT
-	//moveBase(175,127);
-	//pros::delay(100);
-	/*turnBase(-130,127);
-	//pros::delay(100);
-	moveBase(200,127);
-	//pros::delay(200);
-	turnBase(450,127);
-	pros::delay(1000);
-	intake1.tare_position(); 
-    intake2.tare_position(); 
-	intake1.move_relative(2000, 127);
-    intake2.move_relative(2000, 127);
-	moveBase(-200, 40);*/	
-	//turnBase(500,100); //turn around
-
+	roller(-300);
+	pros::delay(200);*/
 
 	std::cout << "END VEX PROGRAM" << std::endl;
 
@@ -220,5 +215,3 @@ void opcontrol() {
 		}
 }
 }	
-
-
