@@ -66,7 +66,7 @@ void autonomous()
 	std::cout << "START VEX PROGRAM" << std::endl;
 
 	//BLUESIDE FAR ROLLER SHOOTING FOR 2 points
-	moveBase(-320, 127);
+	/*moveBase(-320, 127);
 	turnBase(-300, 127);
 	moveBase(-300,127);
 	roller(-500);
@@ -76,24 +76,27 @@ void autonomous()
 	moveBase(100,127);
 	flywheel(true, 58);
 	shoot(2);
-	flywheel(false, 0);
+	flywheel(false, 0);*/
 
 	//BLUESIDE FAR ROLLER SHOOTING FOR 10 points
-	/*moveBase(-320, 127);
+	moveBase(-320, 127);
 	turnBase(-300, 127);
-	moveBase(-300,127);
+	moveBase(-220,127);
 	roller(-500);
 	pros::delay(500);
 	moveBase(30,127);
 	turnBase(-35,127);
-	flywheel(true, 90);
+	/*flywheel(true, 90);
 	shoot(2);
 	flywheel(false, 0);*/
+	flywheelblue(true);
+	shoot(2);
+	flywheelblue(false);
 	
 	//REDSIDE ROLLER
-	/*flywheel(true, 95);
+	/*flywheelred(true);
 	shoot(2);
-	flywheel(false, 0);
+	flywheelred(false);
 	turnBase(-25, 127);
 	pros::delay(100);
 	moveBase(-150,127);
@@ -156,8 +159,8 @@ void opcontrol() {
 
 		if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L1))
 		{
-			flywheel1.move(100);
-			flywheel2.move(-100);
+			flywheel1.move(90);
+			flywheel2.move(-90);
 		}
 		if (master.get_digital(pros::E_CONTROLLER_DIGITAL_UP))
 		{
@@ -200,14 +203,7 @@ void opcontrol() {
 			piston2.set_value(true);
 		}
 
-		if (master.get_digital(pros::E_CONTROLLER_DIGITAL_X))
-		{
-			piston3.set_value(true);
-			pros::delay(1000);
-			piston3.set_value(false);
-		}
-
-		if (master.get_digital(pros::E_CONTROLLER_DIGITAL_LEFT))
+		if (master.get_digital(pros::E_CONTROLLER_DIGITAL_LEFT) & (pros::E_CONTROLLER_DIGITAL_Y))
 		{
 			piston3.set_value(true);
 			pros::delay(10000);

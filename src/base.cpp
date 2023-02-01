@@ -85,6 +85,19 @@ void shoot(int input)
         }
 	}
 
+    void shootblue(int input)
+	{	
+        for(int i=0;i<input;i++)
+		{
+            piston1.set_value(false);
+		    piston2.set_value(false);
+		    pros::delay(150);
+		    piston1.set_value(true);
+		    piston2.set_value(true);
+            pros::delay(2000);
+        }
+	}
+
 void flywheel(bool bOn, double speed)
     {
         if (bOn)
@@ -94,6 +107,41 @@ void flywheel(bool bOn, double speed)
             pros::delay(100);
             flywheel1.move(speed);
             flywheel2.move(-speed);
+            pros::delay(3250);
+        }
+        else {
+            flywheel1.move(0);
+            flywheel2.move(0);   
+        }
+    }
+
+
+    void flywheelred(bool bOn)
+    {
+        if (bOn)
+        {
+            piston1.set_value(true);
+		    piston2.set_value(true);
+            pros::delay(100);
+            flywheel1.move(70);
+            flywheel2.move(-80);
+            pros::delay(3250);
+        }
+        else {
+            flywheel1.move(0);
+            flywheel2.move(0);   
+        }
+    }
+
+    void flywheelblue(bool bOn)
+    {
+        if (bOn)
+        {
+            piston1.set_value(true);
+		    piston2.set_value(true);
+            pros::delay(100);
+            flywheel1.move(70);
+            flywheel2.move(-80);
             pros::delay(3250);
         }
         else {
