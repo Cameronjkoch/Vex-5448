@@ -46,7 +46,7 @@ void moveBase(double input, double speed)
     leftBase2.move_relative(input, speed);
     rightBase1.move_relative(input, speed);
     rightBase2.move_relative(input, speed);
-    while (!((leftBase2.get_position() < input + 5) && (leftBase2.get_position() > input - 5)))
+    while (!((leftBase1.get_position() < input + 5) && (rightBase1.get_position() > input - 5)))
     {
         pros::delay(2);
     }
@@ -81,7 +81,7 @@ void shoot(int input)
 		    pros::delay(150);
 		    piston1.set_value(true);
 		    piston2.set_value(true);
-            pros::delay(1000);
+            pros::delay(3000);
         }
 	}
 
@@ -123,9 +123,9 @@ void flywheel(bool bOn, double speed)
             piston1.set_value(true);
 		    piston2.set_value(true);
             pros::delay(100);
-            flywheel1.move(70);
-            flywheel2.move(-80);
-            pros::delay(3250);
+            flywheel1.move(74);
+            flywheel2.move(-69);
+            pros::delay(4250);
         }
         else {
             flywheel1.move(0);
@@ -140,9 +140,9 @@ void flywheel(bool bOn, double speed)
             piston1.set_value(true);
 		    piston2.set_value(true);
             pros::delay(100);
-            flywheel1.move(70);
-            flywheel2.move(-80);
-            pros::delay(3250);
+            flywheel1.move(97);
+            flywheel2.move(-77);
+            pros::delay(4250);
         }
         else {
             flywheel1.move(0);

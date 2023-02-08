@@ -65,55 +65,56 @@ void autonomous()
 {
 	std::cout << "START VEX PROGRAM" << std::endl;
 
-	//BLUESIDE FAR ROLLER SHOOTING FOR 2 points
-	/*moveBase(-320, 127);
-	turnBase(-300, 127);
-	moveBase(-300,127);
-	roller(-500);
-	pros::delay(500);
-	moveBase(60,127);
-	turnBase(280,127);
-	moveBase(100,127);
-	flywheel(true, 58);
-	shoot(2);
-	flywheel(false, 0);*/
-
-	//BLUESIDE FAR ROLLER SHOOTING FOR 10 points
-	moveBase(-320, 127);
-	turnBase(-300, 127);
-	moveBase(-220,127);
-	roller(-500);
-	pros::delay(500);
-	moveBase(30,127);
-	turnBase(-35,127);
-	/*flywheel(true, 90);
-	shoot(2);
-	flywheel(false, 0);*/
-	flywheelblue(true);
-	shoot(2);
-	flywheelblue(false);
-	
-	//REDSIDE ROLLER
+	//skills
 	/*flywheelred(true);
 	shoot(2);
 	flywheelred(false);
 	turnBase(-25, 127);
 	pros::delay(100);
-	moveBase(-150,127);
-	roller(-300);
+	moveBase(-110,127);
+	roller(-200);
+	pros::delay(200);
+	turnBase(-150,127);
+	piston3.set_value(true);
+	pros::delay(10000);
+	piston3.set_value(false);*/
+
+	//FAR ROLLER SHOOTING FOR 2 points
+	/*moveBase(-420, 100);
+	turnBase(-230, 127);
+	moveBase(-220,127);
+	roller(-150);
+	pros::delay(500);
+	moveBase(60,127);
+	turnBase(320,127);
+	moveBase(100,127);*/
+	/*flywheel(true, 58);
+	shoot(2);
+	flywheel(false, 0);*/
+
+	//FAR ROLLER SHOOTING FOR 10 points
+	/*moveBase(-320, 127);
+	turnBase(-300, 127);
+	moveBase(-170,127);
+	roller(-150);
+	pros::delay(500);
+	moveBase(30,127);
+	turnBase(-65,127);
+	flywheelblue(true);
+	shoot(2);
+	flywheelblue(false);*/
+
+	//REDSIDE ROLLER AND 10
+	flywheelred(true);
+	shoot(2);
+	flywheelred(false);
+	/*turnBase(-25, 127);
+	pros::delay(100);
+	moveBase(-110,127);
+	roller(-200);
 	pros::delay(200);*/
 
 	std::cout << "END VEX PROGRAM" << std::endl;
-
-	/*moveBase(200,130); //move forward
-	turnBase(150,130); //turn to line up and shoot
-	shoot(1);
-	turnBase(-200,130);
-	intake1.move_relative(70,-127);
-	intake2.move_relative(70,-127); 
-	moveBase(100,130);
-	turnBase(400,130);
-	shoot(1);*/
 }
 
 /**
@@ -159,18 +160,23 @@ void opcontrol() {
 
 		if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L1))
 		{
-			flywheel1.move(90);
-			flywheel2.move(-90);
+			flywheel1.move(59);
+			flywheel2.move(-57);
+		}
+		if (master.get_digital(pros::E_CONTROLLER_DIGITAL_X))
+		{
+			flywheel1.move(70);
+			flywheel2.move(0);
 		}
 		if (master.get_digital(pros::E_CONTROLLER_DIGITAL_UP))
 		{
-			flywheel1.move(130);
-			flywheel2.move(-130);
+			flywheel1.move(70);
+			flywheel2.move(-70);
 		}
 		if (master.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN))
 		{
-			flywheel1.move(70);
-			flywheel2.move(-70);
+			flywheel1.move(50);
+			flywheel2.move(-50);
 		}
 		if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L2))
 		{
@@ -203,7 +209,7 @@ void opcontrol() {
 			piston2.set_value(true);
 		}
 
-		if (master.get_digital(pros::E_CONTROLLER_DIGITAL_LEFT) & (pros::E_CONTROLLER_DIGITAL_Y))
+		if (master.get_digital(pros::E_CONTROLLER_DIGITAL_LEFT) && master.get_digital(pros::E_CONTROLLER_DIGITAL_A))
 		{
 			piston3.set_value(true);
 			pros::delay(10000);
