@@ -35,7 +35,7 @@ void runRightBase(double input)
     std::cout << "right " << input << std::endl;
 }
 
-void moveBase(double input, double speed)
+void moveBase(double input, double speed, bool bWaitonMove)
 {
     leftBase1.tare_position(); 
     leftBase2.tare_position(); 
@@ -46,12 +46,19 @@ void moveBase(double input, double speed)
     leftBase2.move_relative(input, speed);
     rightBase1.move_relative(input, speed);
     rightBase2.move_relative(input, speed);
-    while (!((leftBase1.get_position() < input + 5) && (rightBase1.get_position() > input - 5)))
+    
+    if (bWaitonMove)
+    {
+        checkMoving(input);
+    }
+
+    
+    /*while (!((leftBase1.get_position() < input + 5) && (rightBase1.get_position() > input - 5)))
     {
         pros::delay(2);
-    }
+    }*/
 }
-void turnBase(double input, double speed)
+void turnBase(double input, double speed, bool bWaitonMove)
 {
     std::cout << "works" << std::endl;
     leftBase1.tare_position(); 
@@ -65,12 +72,14 @@ void turnBase(double input, double speed)
     rightBase1.move_relative(-input, speed);
     rightBase2.move_relative(-input, speed);
    
-    input=abs(input);
-
+    //input=abs(input);
     
-    int iLastRightPosition = 0;
-    int iLastLeftPosition = 0;   
-    checkMoving(input);
+    //int iLastRightPosition = 0;
+    //int iLastLeftPosition = 0;   
+    if (bWaitonMove)
+    {
+        checkMoving(input);
+    }
 }
 void shoot(int input)
 	{	
@@ -157,6 +166,8 @@ void flywheel(bool bOn, double speed)
  
     intake1.move_relative(input, 127);
     intake2.move_relative(input, 127);
+
+
     while (!((intake2.get_position() < input + 5) && (intake2.get_position() > input - 5)))
     {
         pros::delay(2);
@@ -165,11 +176,16 @@ void flywheel(bool bOn, double speed)
 void checkMoving(double input)
 {
     leftBase1.tare_position(); 
-    leftBase2.tare_position(); 
+    //rightBase1.tare_position(); 
+    int iCounter = 0;
+    int iMaxIterations = abs(int(input))*105;
     //std:: cout << "checkMoving " << input << std::endl;
-    double avgPos = (abs(leftBase1.get_position()) + abs(leftBase2.get_position()))/2.0;
-    while (!(avgPos <= input + 5 && avgPos >= input - 5))
+    //double avgPos = (abs(int(leftBase1.get_position())) + abs(int(rightBase1.get_position())))/2.0;
+    while (((!((abs(int(leftBase1.get_position())) < abs(int(input)) + 5) && (abs(int(leftBase1.get_position())) > abs(int(input)) - 5))))
+        && iCounter < iMaxIterations)
     {
-        avgPos = (+abs(leftBase1.get_position()) + abs(leftBase2.get_position()))/2.0;
+        pros::delay(2);
+        //avgPos = (+abs(int(leftBase1.get_position())) + abs(int(rightBase1.get_position())))/2.0;
+        iCounter++;
     }
 }

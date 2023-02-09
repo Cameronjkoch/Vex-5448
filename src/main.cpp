@@ -65,30 +65,34 @@ void autonomous()
 {
 	std::cout << "START VEX PROGRAM" << std::endl;
 
-	//skills
-	/*flywheelred(true);
-	shoot(2);
-	flywheelred(false);
-	turnBase(-25, 127);
-	pros::delay(100);
-	moveBase(-110,127);
-	roller(-200);
-	pros::delay(200);
-	turnBase(-150,127);
-	piston3.set_value(true);
-	pros::delay(10000);
-	piston3.set_value(false);*/
+	//test
+	moveBase(300,127,true);
+	turnBase(-410,127, true);
+	turnBase(410,127, true);
+	moveBase(-300,127,true);
+
 
 	//FAR ROLLER SHOOTING FOR 2 points
-	/*moveBase(-420, 100);
-	turnBase(-230, 127);
+	/*moveBase(-430, 100);
+	turnBase(-225, 127);
 	moveBase(-220,127);
 	roller(-150);
 	pros::delay(500);
 	moveBase(60,127);
-	turnBase(320,127);
-	moveBase(100,127);*/
-	/*flywheel(true, 58);
+	turnBase(250,127);
+	moveBase(300,127);
+	flywheel(true, 45);
+	shoot(2);
+	flywheel(false, 0);*/
+
+	//short 12
+	/*moveBase(-150,127, true);
+	roller(-150);
+	pros::delay(500);
+	moveBase(60,127, true);
+	turnBase(-210,127, true);
+	moveBase(500,127, true);
+	flywheel(true, 50);
 	shoot(2);
 	flywheel(false, 0);*/
 
@@ -105,10 +109,10 @@ void autonomous()
 	flywheelblue(false);*/
 
 	//REDSIDE ROLLER AND 10
-	flywheelred(true);
+	/*flywheelred(true);
 	shoot(2);
 	flywheelred(false);
-	/*turnBase(-25, 127);
+	turnBase(-25, 127);
 	pros::delay(100);
 	moveBase(-110,127);
 	roller(-200);
